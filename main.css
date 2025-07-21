@@ -1,0 +1,174 @@
+/*******************************************************************************
+ * Variables
+ ******************************************************************************/
+
+:root {
+  /* Typography */
+  --font-size: 1rem;
+  --font-size-xs: 0.75rem;
+  --font-size-l: 1.25rem;
+  --font-size-xxl: 2.25rem;
+
+  --font-stack: ui-sans-serif, system-ui, sans-serif;
+
+  /* Space */
+  --space: 1rem;
+
+  /* Colours */
+  --light-foreground: hsl(28, 5%, 16%);
+  --light-background: hsl(28, 5%, 99%);
+  --light-accent: hsl(20, 100%, 40%);
+
+  --dark-foreground: hsl(210, 15%, 85%);
+  --dark-background: hsl(210, 20%, 8%);
+  --dark-accent: hsl(28, 80%, 60%);
+
+  --foreground: var(--light-foreground);
+  --background: var(--light-background);
+  --accent: var(--light-accent);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground: var(--dark-foreground);
+    --background: var(--dark-background);
+    --accent: var(--dark-accent);
+  }
+}
+
+/*******************************************************************************
+ * Base
+ ******************************************************************************/
+
+/* Box-sizing */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Wrapping */
+p,
+h1 {
+  overflow-wrap: break-word;
+  hyphens: auto;
+  margin-block-start: 0;
+}
+
+/* Headings */
+h1 {
+  font-family: var(--font-stack);
+  font-size: var(--font-size-xxl);
+  font-weight: 900;
+  line-height: calc(2px + 2ex + 2px);
+  margin-block-end: 0.65em;
+}
+
+/* Links */
+a {
+  color: currentColor;
+  font-weight: 700;
+  text-decoration-color: var(--accent);
+  text-decoration-thickness: 0.25ex;
+  text-underline-offset: 0.3ex;
+
+  &:hover,
+  &:focus {
+    color: var(--accent);
+  }
+}
+
+/* Body */
+body {
+  font-size: var(--font-size);
+  line-height: 1.5;
+  text-rendering: optimizeSpeed;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+
+  color: var(--foreground);
+  background: var(--background);
+  font-family: var(--font-stack);
+}
+
+/*******************************************************************************
+ * Layout
+ ******************************************************************************/
+
+body {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: var(--space);
+  min-height: 100vh;
+  min-height: 100dvh;
+  max-width: 64rem;
+  margin: 0 auto;
+
+  >header,
+  >main {
+    padding-inline: var(--space);
+  }
+
+  main {
+    display: grid;
+    justify-content: center;
+    align-content: center;
+  }
+}
+
+/*******************************************************************************
+ * Header
+ ******************************************************************************/
+
+body>header {
+  padding-block: var(--space);
+  text-align: center;
+
+  a {
+    text-decoration: none;
+  }
+
+  h1 {
+    font-size: var(--font-size-l);
+    font-weight: 900;
+    margin-block-end: 0;
+  }
+
+  h1+p {
+    font-size: var(--font-size-xs);
+    color: var(--foreground);
+    margin: 0;
+  }
+}
+
+/*******************************************************************************
+ * Utils
+ ******************************************************************************/
+
+[hidden] {
+  display: none;
+}
+
+/*******************************************************************************
+ * Global Overrides
+ ******************************************************************************/
+
+/* Focus */
+*:focus-visible {
+  outline: 0.25ex solid var(--accent);
+  outline-offset: 0.1rem;
+  text-decoration: none;
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
